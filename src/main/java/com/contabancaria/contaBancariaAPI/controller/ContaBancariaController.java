@@ -3,6 +3,7 @@ package com.contabancaria.contaBancariaAPI.controller;
 import com.contabancaria.contaBancariaAPI.model.ContaBancariaFactory;
 import com.contabancaria.contaBancariaAPI.model.ContaBancariaModel;
 import com.contabancaria.contaBancariaAPI.service.ContaBancariaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 @RestController
 public class ContaBancariaController {
 
+   @Autowired
     private ContaBancariaService contaBancariaService;
 
     @GetMapping(path = "/contabancaria/{codigo}")
@@ -30,6 +32,7 @@ public class ContaBancariaController {
         return contaBancariaService.cadastrarConta(contaBancariaModel, contaBancariaFactory);
     }
 
+    @DeleteMapping
     public void deletarConta(@PathVariable Long codigo){
         contaBancariaService.deletar(codigo);
     }
