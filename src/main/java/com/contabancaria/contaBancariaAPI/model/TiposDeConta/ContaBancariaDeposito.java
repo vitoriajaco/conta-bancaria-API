@@ -12,8 +12,4 @@ public class ContaBancariaDeposito implements CalculoContaBancaria {
         return valorASerAcrescido;
     }
 
-    @Override
-    public BigDecimal calcularValorDaConta(ContaBancariaModel contaBancariaModel) {
-        return null;
-    }
 }

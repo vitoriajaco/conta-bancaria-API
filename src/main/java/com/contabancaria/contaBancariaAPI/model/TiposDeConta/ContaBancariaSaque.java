@@ -13,8 +13,4 @@ public class ContaBancariaSaque implements CalculoContaBancaria {
         return valorASerRetirado;
     }
 
-    @Override
-    public BigDecimal calcularValorDaConta(ContaBancariaModel contaBancariaModel) {
-        return null;
-    }
 }

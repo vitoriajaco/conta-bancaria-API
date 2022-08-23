@@ -8,5 +8,5 @@ public interface CalculoContaBancaria {
 
     public BigDecimal calcularValorDaConta(BigDecimal valorAtualDaConta, BigDecimal valorFinal);
 
-    BigDecimal calcularValorDaConta(ContaBancariaModel contaBancariaModel);
+
 }

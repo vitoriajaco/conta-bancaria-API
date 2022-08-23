@@ -1,17 +1,17 @@
 package com.contabancaria.contaBancariaAPI.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
 @Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Conta Bancaria")
+@Table(name = "contabancaria")
 public class ContaBancariaModel {
 
     @Id
@@ -35,5 +35,7 @@ public class ContaBancariaModel {
 
     @Column
     private String tipoDeServico;
+
+    private BigDecimal valorSaqueDeposito;
 
 }
