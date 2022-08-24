@@ -5,6 +5,7 @@ import com.contabancaria.contaBancariaAPI.model.ContaBancariaModel;
 import com.contabancaria.contaBancariaAPI.service.ContaBancariaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +18,25 @@ public class ContaBancariaController {
     private ContaBancariaService contaBancariaService;
 
     @GetMapping(path = "/contabancaria/{codigo}")
-    public Optional<ContaBancariaModel> buscarPorID (@PathVariable Long codigo){
-        return contaBancariaService.buscarId(codigo);
+    public ResponseEntity<Optional<ContaBancariaModel>> buscarPorID (@PathVariable Long codigo){
+        return ResponseEntity.ok(contaBancariaService.buscarId(codigo));
     }
 
    @GetMapping(path= "/contabancaria")
-    public List<ContaBancariaModel> mostrarTodasAsContas(){
-        return contaBancariaService.mostrarTodasAsContas();
+    public ResponseEntity<List<ContaBancariaModel>> mostrarTodasAsContas(){
+        List<ContaBancariaModel> lista = contaBancariaService.mostrarTodasAsContas();
+        return ResponseEntity.ok(lista);
+
     }
 
     @PostMapping(path= "/contabancaria")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ContaBancariaModel cadastrarConta(@RequestBody ContaBancariaModel contaBancariaModel, ContaBancariaFactory contaBancariaFactory){
-        return contaBancariaService.cadastrarConta(contaBancariaModel, contaBancariaFactory);
+    public ResponseEntity<ContaBancariaModel> cadastrarConta(@RequestBody ContaBancariaModel contaBancariaModel, ContaBancariaFactory contaBancariaFactory){
+       ContaBancariaModel conta = contaBancariaService.cadastrarConta(contaBancariaModel, contaBancariaFactory);
+       return new ResponseEntity<>(conta, HttpStatus.CREATED);
+
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/produtos/{codigo}")
     public void deletarConta(@PathVariable Long codigo){
         contaBancariaService.deletar(codigo);
     }

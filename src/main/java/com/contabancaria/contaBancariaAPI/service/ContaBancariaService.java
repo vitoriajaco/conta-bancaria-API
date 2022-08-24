@@ -24,9 +24,6 @@ public class ContaBancariaService {
         return contaBancariaRepository.findById(codigo);
     }
 
-    public void deletar(Long codigo){
-        contaBancariaRepository.deleteById(codigo);
-    }
 
     public ContaBancariaModel cadastrarConta(ContaBancariaModel contaBancariaModel, ContaBancariaFactory contaBancariaFactory){
 
@@ -38,6 +35,11 @@ public class ContaBancariaService {
         contaBancariaModel.getValorSaqueDeposito();
         BigDecimal resultado = contaBancariaFactory.getCalculoContaBancaria(contaBancariaModel.getTipoDeServico()).calcularValorDaConta(contaBancariaModel.getValorAtualDaConta(),contaBancariaModel.getValorSaqueDeposito());
         contaBancariaModel.setValorFinal(resultado);
-        return contaBancariaRepository.save(contaBancariaModel);
+
+             return contaBancariaRepository.save(contaBancariaModel);
+    }
+
+    public void deletar(Long codigo){
+        contaBancariaRepository.deleteById(codigo);
     }
 }
